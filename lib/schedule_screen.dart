@@ -1,5 +1,7 @@
 import 'package:dule/constants/screen_constants.dart';
+import 'package:dule/utils/dateUtils.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class ScheduleScreen extends StatefulWidget {
@@ -173,82 +175,12 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
               ),
               Expanded(
                 child: ListView(
-                  children: [
-                    const SizedBox(
+                  children: const [
+                    SizedBox(
                       height: 12,
                     ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 12,
-                      ),
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 203, 75, 226),
-                        borderRadius: BorderRadius.circular(
-                          10,
-                        ),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            " Mat202 Linear Algebra",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 6,
-                          ),
-                          Row(
-                            children: const [
-                              Icon(
-                                Icons.place,
-                                color: Color.fromARGB(255, 228, 227, 227),
-                                size: 20,
-                              ),
-                              SizedBox(
-                                width: 4,
-                              ),
-                              Text(
-                                "New faculty building , science vilage",
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  color: Color.fromARGB(255, 228, 227, 227),
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              )
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 6,
-                          ),
-                          Row(
-                            children: const [
-                              CircleAvatar(
-                                radius: 10,
-                                backgroundImage: AssetImage(
-                                  "assets/images/lecturer.jpg",
-                                ),
-                              ),
-                              SizedBox(
-                                width: 8,
-                              ),
-                              Text(
-                                "Prof. Anigbogu",
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  color: Color.fromARGB(255, 228, 227, 227),
-                                ),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
+                    ScheduledCourseWidget(),
+                    ScheduledCourseWidget(),
                   ],
                 ),
               ),
@@ -256,6 +188,220 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class ScheduledCourseWidget extends StatelessWidget {
+  const ScheduledCourseWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return IntrinsicHeight(
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 4),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ScheduledTime(
+              dateTimeRange: DateTimeRange(
+                start: DateTime(2022, 2, 3, 9),
+                end: DateTime(2022, 2, 3, 10),
+              ),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Column(
+              children: [
+                const InActiveIndicator(),
+                const SizedBox(
+                  height: 4,
+                ),
+                Expanded(
+                  child: IntrinsicWidth(
+                    child: Container(
+                      width: 2,
+                      decoration: const BoxDecoration(
+                        color: Colors.deepPurpleAccent,
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Expanded(
+              child: IntrinsicHeight(
+                child: Container(
+                  margin: const EdgeInsets.only(
+                    bottom: 20,
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 12,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.deepPurpleAccent,
+                    borderRadius: BorderRadius.circular(
+                      10,
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        " Mat202 Linear Algebra",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 6,
+                      ),
+                      Row(
+                        children: const [
+                          Icon(
+                            Icons.place,
+                            color: Color.fromARGB(255, 228, 227, 227),
+                            size: 18,
+                          ),
+                          SizedBox(
+                            width: 4,
+                          ),
+                          Text(
+                            "New faculty building , science vilage",
+                            style: TextStyle(
+                              fontSize: 13,
+                              color: Color.fromARGB(255, 228, 227, 227),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 6,
+                      ),
+                      Row(
+                        children: const [
+                          CircleAvatar(
+                            radius: 9,
+                            backgroundImage: AssetImage(
+                              "assets/images/lecturer.jpg",
+                            ),
+                          ),
+                          SizedBox(
+                            width: 8,
+                          ),
+                          Text(
+                            "Prof. Anigbogu",
+                            style: TextStyle(
+                              fontSize: 13,
+                              color: Color.fromARGB(255, 228, 227, 227),
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class InActiveIndicator extends StatelessWidget {
+  const InActiveIndicator({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 8,
+      width: 8,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: Colors.white,
+        border: Border.all(
+          color: Colors.deepPurpleAccent,
+          width: 2.5,
+        ),
+      ),
+    );
+  }
+}
+
+class ActiveIndicator extends StatelessWidget {
+  const ActiveIndicator({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 14,
+      width: 14,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: Colors.white,
+        border: Border.all(
+          color: Colors.deepPurpleAccent,
+          width: 2,
+        ),
+      ),
+      child: Center(
+        child: Container(
+          height: 7,
+          width: 7,
+          decoration: const BoxDecoration(
+            color: Colors.deepPurpleAccent,
+            shape: BoxShape.circle,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ScheduledTime extends StatelessWidget {
+  final DateTimeRange dateTimeRange;
+  const ScheduledTime({
+    super.key,
+    required this.dateTimeRange,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          DateFormat.jm().format(dateTimeRange.start),
+          style: const TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 14,
+          ),
+        ),
+        const SizedBox(
+          height: 6,
+        ),
+        Text(
+          DateFormat.jm().format(dateTimeRange.end),
+          style: const TextStyle(
+            color: Colors.grey,
+            fontSize: 12,
+          ),
+        )
+      ],
     );
   }
 }
@@ -304,52 +450,5 @@ class ScheduleHeader extends StatelessWidget {
         )
       ],
     );
-  }
-}
-
-extension ToDays on DateTime {
-  String toDays() {
-    String day;
-    switch (month) {
-      case 1:
-        day = "Jan";
-        break;
-      case 2:
-        day = "Feb";
-        break;
-      case 3:
-        day = "Mar";
-        break;
-      case 4:
-        day = "Apr";
-        break;
-      case 5:
-        day = "May";
-        break;
-      case 6:
-        day = "Jun";
-        break;
-      case 7:
-        day = "Jul";
-        break;
-      case 8:
-        day = "Aug";
-        break;
-      case 9:
-        day = "Sep";
-        break;
-      case 10:
-        day = "Oct";
-        break;
-      case 11:
-        day = "Nov";
-        break;
-      case 12:
-        day = "Dec";
-        break;
-      default:
-        day = "";
-    }
-    return day;
   }
 }
