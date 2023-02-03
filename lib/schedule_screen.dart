@@ -36,10 +36,126 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                 lastDay: _lastDay,
                 calendarFormat: _calendarFormat,
                 headerVisible: false,
-                calendarStyle: const CalendarStyle(),
+                calendarBuilders: CalendarBuilders(
+                  dowBuilder: (context, day) {
+                    if (day.weekday == DateTime.now().weekday) {
+                      return Center(
+                        child: Text(
+                          day.toDays(),
+                          style: const TextStyle(
+                            color: Color.fromARGB(255, 44, 134, 47),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 17,
+                          ),
+                        ),
+                      );
+                    }
+                    return null;
+                  },
+                  outsideBuilder: (context, day, focusedDay) {
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          day.day.toString(),
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 17,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 4,
+                        ),
+                        Container(
+                          alignment: Alignment.bottomCenter,
+                          margin: const EdgeInsets.symmetric(horizontal: 4),
+                          height: 3,
+                        )
+                      ],
+                    );
+                  },
+                  disabledBuilder: (context, day, focusedDay) {
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          day.day.toString(),
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 17,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 4,
+                        ),
+                        Container(
+                          alignment: Alignment.bottomCenter,
+                          margin: const EdgeInsets.symmetric(horizontal: 4),
+                          height: 3,
+                        )
+                      ],
+                    );
+                  },
+                  defaultBuilder: (context, day, focusedDay) {
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          day.day.toString(),
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 17,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 4,
+                        ),
+                        Container(
+                          alignment: Alignment.bottomCenter,
+                          margin: const EdgeInsets.symmetric(horizontal: 4),
+                          height: 3,
+                        )
+                      ],
+                    );
+                  },
+                  todayBuilder: (context, day, focusedDay) {
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          day.day.toString(),
+                          style: const TextStyle(
+                            color: Color.fromARGB(255, 44, 134, 47),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 19,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 4,
+                        ),
+                        Container(
+                          alignment: Alignment.bottomCenter,
+                          margin: const EdgeInsets.symmetric(horizontal: 10),
+                          color: const Color.fromARGB(255, 44, 134, 47),
+                          height: 3,
+                        )
+                      ],
+                    );
+                  },
+                ),
+                calendarStyle: const CalendarStyle(
+                  todayDecoration: BoxDecoration(
+                    color: Colors.red,
+                  ),
+                  tablePadding: EdgeInsets.all(0),
+                ),
                 currentDay: DateTime.now(),
                 startingDayOfWeek: StartingDayOfWeek.monday,
                 rowHeight: 50,
+                onDaySelected: (selectedDay, focusedDay) {},
                 daysOfWeekStyle: const DaysOfWeekStyle(
                   weekdayStyle: TextStyle(
                     color: Color.fromARGB(255, 92, 92, 92),
@@ -54,6 +170,87 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                   DateTime.saturday,
                   DateTime.sunday,
                 ],
+              ),
+              Expanded(
+                child: ListView(
+                  children: [
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 12,
+                      ),
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 203, 75, 226),
+                        borderRadius: BorderRadius.circular(
+                          10,
+                        ),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            " Mat202 Linear Algebra",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 6,
+                          ),
+                          Row(
+                            children: const [
+                              Icon(
+                                Icons.place,
+                                color: Color.fromARGB(255, 228, 227, 227),
+                                size: 20,
+                              ),
+                              SizedBox(
+                                width: 4,
+                              ),
+                              Text(
+                                "New faculty building , science vilage",
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  color: Color.fromARGB(255, 228, 227, 227),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              )
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 6,
+                          ),
+                          Row(
+                            children: const [
+                              CircleAvatar(
+                                radius: 10,
+                                backgroundImage: AssetImage(
+                                  "assets/images/lecturer.jpg",
+                                ),
+                              ),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Text(
+                                "Prof. Anigbogu",
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  color: Color.fromARGB(255, 228, 227, 227),
+                                ),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
