@@ -43,7 +43,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                     if (day.weekday == DateTime.now().weekday) {
                       return Center(
                         child: Text(
-                          day.toDays(),
+                          DateFormat.E().format(day),
                           style: const TextStyle(
                             color: Color.fromARGB(255, 44, 134, 47),
                             fontWeight: FontWeight.bold,
@@ -128,11 +128,11 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          day.day.toString(),
+                          DateFormat.d().format(day),
                           style: const TextStyle(
                             color: Color.fromARGB(255, 44, 134, 47),
                             fontWeight: FontWeight.bold,
-                            fontSize: 19,
+                            fontSize: 18,
                           ),
                         ),
                         const SizedBox(
@@ -242,8 +242,8 @@ class ScheduledCourseWidget extends StatelessWidget {
                     bottom: 20,
                   ),
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 12,
+                    horizontal: 8,
+                    vertical: 8,
                   ),
                   decoration: BoxDecoration(
                     color: Colors.deepPurpleAccent,
@@ -259,7 +259,7 @@ class ScheduledCourseWidget extends StatelessWidget {
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
-                          fontWeight: FontWeight.w700,
+                          fontWeight: FontWeight.w600,
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
@@ -292,7 +292,7 @@ class ScheduledCourseWidget extends StatelessWidget {
                       Row(
                         children: const [
                           CircleAvatar(
-                            radius: 9,
+                            radius: 9.5,
                             backgroundImage: AssetImage(
                               "assets/images/lecturer.jpg",
                             ),
