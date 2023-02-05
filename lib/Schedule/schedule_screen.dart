@@ -1,5 +1,5 @@
-import 'package:dule/constants/screen_constants.dart';
-import 'package:dule/utils/dateUtils.dart';
+import 'package:dule/shared/screen_constants.dart';
+import 'package:dule/utils/date_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -222,6 +222,7 @@ class ScheduledCourseWidget extends StatelessWidget {
                 ),
                 Expanded(
                   child: IntrinsicWidth(
+                    stepWidth: 2,
                     child: Container(
                       width: 2,
                       decoration: const BoxDecoration(
@@ -383,12 +384,13 @@ class ScheduledTime extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           DateFormat.jm().format(dateTimeRange.start),
           style: const TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 14,
+            fontWeight: FontWeight.w500,
+            fontSize: 15,
           ),
         ),
         const SizedBox(
@@ -426,7 +428,7 @@ class ScheduleHeader extends StatelessWidget {
           todaysDate.toDays(),
           style: const TextStyle(
             color: Colors.deepPurpleAccent,
-            fontSize: 22,
+            fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
         ),
