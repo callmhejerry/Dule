@@ -1,6 +1,7 @@
 import 'package:dule/shared/screen_constants.dart';
 import 'package:dule/utils/date_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -20,17 +21,17 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: ScreenConstants.horizontalScreenPadding,
-          vertical: ScreenConstants.verticalScreenPadding,
+        padding: EdgeInsets.symmetric(
+          horizontal: ScreenConstants.horizontalScreenPadding.w,
+          vertical: ScreenConstants.verticalScreenPadding.h,
         ),
         child: SafeArea(
           child: Column(
             children: [
-              const SizedBox(height: 10),
+              SizedBox(height: 10.h),
               const ScheduleHeader(),
-              const SizedBox(
-                height: ScreenConstants.verticalSpacing,
+              SizedBox(
+                height: ScreenConstants.verticalSpacing.h,
               ),
               TableCalendar(
                 focusedDay: _focusedDay,
@@ -46,8 +47,8 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                           DateFormat.E().format(day),
                           style: const TextStyle(
                             color: Color.fromARGB(255, 44, 134, 47),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 17,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16,
                           ),
                         ),
                       );
@@ -66,13 +67,13 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                             fontSize: 17,
                           ),
                         ),
-                        const SizedBox(
-                          height: 4,
+                        SizedBox(
+                          height: 4.h,
                         ),
                         Container(
                           alignment: Alignment.bottomCenter,
-                          margin: const EdgeInsets.symmetric(horizontal: 4),
-                          height: 3,
+                          margin: EdgeInsets.symmetric(horizontal: 4.w),
+                          height: 3.h,
                         )
                       ],
                     );
@@ -89,13 +90,13 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                             fontSize: 17,
                           ),
                         ),
-                        const SizedBox(
-                          height: 4,
+                        SizedBox(
+                          height: 4.h,
                         ),
                         Container(
                           alignment: Alignment.bottomCenter,
-                          margin: const EdgeInsets.symmetric(horizontal: 4),
-                          height: 3,
+                          margin: EdgeInsets.symmetric(horizontal: 4.w),
+                          height: 3.h,
                         )
                       ],
                     );
@@ -112,13 +113,13 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                             fontSize: 17,
                           ),
                         ),
-                        const SizedBox(
-                          height: 4,
+                        SizedBox(
+                          height: 4.h,
                         ),
                         Container(
                           alignment: Alignment.bottomCenter,
-                          margin: const EdgeInsets.symmetric(horizontal: 4),
-                          height: 3,
+                          margin: EdgeInsets.symmetric(horizontal: 4.w),
+                          height: 3.h,
                         )
                       ],
                     );
@@ -140,9 +141,9 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                         ),
                         Container(
                           alignment: Alignment.bottomCenter,
-                          margin: const EdgeInsets.symmetric(horizontal: 10),
+                          margin: EdgeInsets.symmetric(horizontal: 10.w),
                           color: const Color.fromARGB(255, 44, 134, 47),
-                          height: 3,
+                          height: 3.h,
                         )
                       ],
                     );
@@ -156,7 +157,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                 ),
                 currentDay: DateTime.now(),
                 startingDayOfWeek: StartingDayOfWeek.monday,
-                rowHeight: 50,
+                rowHeight: 50.h,
                 onDaySelected: (selectedDay, focusedDay) {},
                 daysOfWeekStyle: const DaysOfWeekStyle(
                   weekdayStyle: TextStyle(
@@ -175,12 +176,12 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
               ),
               Expanded(
                 child: ListView(
-                  children: const [
+                  children: [
                     SizedBox(
-                      height: 12,
+                      height: 12.h,
                     ),
-                    ScheduledCourseWidget(),
-                    ScheduledCourseWidget(),
+                    const ScheduledCourseWidget(),
+                    const ScheduledCourseWidget(),
                   ],
                 ),
               ),
@@ -201,7 +202,7 @@ class ScheduledCourseWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return IntrinsicHeight(
       child: Container(
-        margin: const EdgeInsets.only(bottom: 4),
+        margin: EdgeInsets.only(bottom: 4.h),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -211,20 +212,20 @@ class ScheduledCourseWidget extends StatelessWidget {
                 end: DateTime(2022, 2, 3, 10),
               ),
             ),
-            const SizedBox(
-              width: 10,
+            SizedBox(
+              width: 10.w,
             ),
             Column(
               children: [
                 const InActiveIndicator(),
-                const SizedBox(
-                  height: 4,
+                SizedBox(
+                  height: 4.h,
                 ),
                 Expanded(
                   child: IntrinsicWidth(
-                    stepWidth: 2,
+                    stepWidth: 2.w,
                     child: Container(
-                      width: 2,
+                      width: 2.w,
                       decoration: const BoxDecoration(
                         color: Colors.deepPurpleAccent,
                       ),
@@ -233,23 +234,23 @@ class ScheduledCourseWidget extends StatelessWidget {
                 )
               ],
             ),
-            const SizedBox(
-              width: 10,
+            SizedBox(
+              width: 10.h,
             ),
             Expanded(
               child: IntrinsicHeight(
                 child: Container(
-                  margin: const EdgeInsets.only(
-                    bottom: 20,
+                  margin: EdgeInsets.only(
+                    bottom: 20.h,
                   ),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 8,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 8.w,
+                    vertical: 8.h,
                   ),
                   decoration: BoxDecoration(
                     color: Colors.deepPurpleAccent,
                     borderRadius: BorderRadius.circular(
-                      10,
+                      10.r,
                     ),
                   ),
                   child: Column(
@@ -264,20 +265,20 @@ class ScheduledCourseWidget extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      const SizedBox(
-                        height: 6,
+                      SizedBox(
+                        height: 6.h,
                       ),
                       Row(
-                        children: const [
-                          Icon(
+                        children: [
+                          const Icon(
                             Icons.place,
                             color: Color.fromARGB(255, 228, 227, 227),
                             size: 18,
                           ),
                           SizedBox(
-                            width: 4,
+                            width: 4.w,
                           ),
-                          Text(
+                          const Text(
                             "New faculty building , science vilage",
                             style: TextStyle(
                               fontSize: 13,
@@ -287,21 +288,21 @@ class ScheduledCourseWidget extends StatelessWidget {
                           )
                         ],
                       ),
-                      const SizedBox(
-                        height: 6,
+                      SizedBox(
+                        height: 6.h,
                       ),
                       Row(
-                        children: const [
+                        children: [
                           CircleAvatar(
-                            radius: 9.5,
-                            backgroundImage: AssetImage(
+                            radius: 9.5.r,
+                            backgroundImage: const AssetImage(
                               "assets/images/lecturer.jpg",
                             ),
                           ),
                           SizedBox(
-                            width: 8,
+                            width: 8.w,
                           ),
-                          Text(
+                          const Text(
                             "Prof. Anigbogu",
                             style: TextStyle(
                               fontSize: 13,
@@ -328,14 +329,14 @@ class InActiveIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 8,
-      width: 8,
+      height: 8.h,
+      width: 8.w,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: Colors.white,
         border: Border.all(
           color: Colors.deepPurpleAccent,
-          width: 2.5,
+          width: 2.5.w,
         ),
       ),
     );
@@ -350,20 +351,20 @@ class ActiveIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 14,
-      width: 14,
+      height: 14.h,
+      width: 14.w,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: Colors.white,
         border: Border.all(
           color: Colors.deepPurpleAccent,
-          width: 2,
+          width: 2.w,
         ),
       ),
       child: Center(
         child: Container(
-          height: 7,
-          width: 7,
+          height: 7.h,
+          width: 7.w,
           decoration: const BoxDecoration(
             color: Colors.deepPurpleAccent,
             shape: BoxShape.circle,
@@ -393,8 +394,8 @@ class ScheduledTime extends StatelessWidget {
             fontSize: 15,
           ),
         ),
-        const SizedBox(
-          height: 6,
+        SizedBox(
+          height: 6.h,
         ),
         Text(
           DateFormat.jm().format(dateTimeRange.end),
@@ -421,8 +422,8 @@ class ScheduleHeader extends StatelessWidget {
           Icons.calendar_today,
           color: Colors.grey,
         ),
-        const SizedBox(
-          width: 12,
+        SizedBox(
+          width: 12.w,
         ),
         Text(
           todaysDate.toDays(),
@@ -432,8 +433,8 @@ class ScheduleHeader extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(
-          width: 5,
+        SizedBox(
+          width: 5.w,
         ),
         Text(
           todaysDate.year.toString(),
