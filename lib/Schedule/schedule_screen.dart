@@ -136,8 +136,8 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                             fontSize: 18,
                           ),
                         ),
-                        const SizedBox(
-                          height: 4,
+                        SizedBox(
+                          height: 4.h,
                         ),
                         Container(
                           alignment: Alignment.bottomCenter,
